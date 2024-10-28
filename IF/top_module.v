@@ -1,5 +1,6 @@
 module TopModule(input clock, rst);
     wire hazard, hazardTwoSrc;
+    assign hazard = 0;
     wire [1:0] selSrc1, selSrc2;
 
     wire [31:0] pcOutIf, instOutIf;
@@ -26,7 +27,9 @@ module TopModule(input clock, rst);
     wire carryOut;
     wire memReadOutEx, memWriteOutEx, wbEnOutEx;
     wire branchTaken;
+    assign branchTaken = 0;
     wire [31:0] branchAddr;
+    assign branchAddr = 32'b0;
     wire [31:0] aluResOutEx, reg2OutEx;
     wire [3:0] destOutEx;
     wire [3:0] status;
@@ -37,6 +40,7 @@ module TopModule(input clock, rst);
     wire [3:0] destOutExMem;
     wire memReadOutMem, wbEnOutMem;
     wire ramFreeze;
+    assign ramFreeze = 0;
     wire [31:0] aluResOutMem, memDataOutMem;
     wire [3:0] destOutMem;
     wire memReadOutMemWb, wbEnOutMemWb;
