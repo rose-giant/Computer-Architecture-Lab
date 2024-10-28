@@ -1,6 +1,3 @@
-`include "mux.v"
-`include "adder.v"
-`include "instruction_mem.v"
 
 module StageIf(input clk, rst, branchTaken, freeze, input [31:0] branchAddr, output [31:0] pc, instruction);
     wire [31:0] muxOutput, pcOutput, pcAdderOut;

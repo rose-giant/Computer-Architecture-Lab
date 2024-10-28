@@ -1,10 +1,3 @@
-`include "if_module.v"
-`include "id_module.v"
-`include "ex_module.v"
-`include "mem_module.v"
-`include "write_module.v"
-`include "reg_if.v"
-
 module TopModule(input clock, rst);
     wire hazard, hazardTwoSrc;
     wire [1:0] selSrc1, selSrc2;
@@ -81,13 +74,13 @@ module TopModule(input clock, rst);
         .src1(src1OutId), .src2(src2OutId), .hazardTwoSrc(hazardTwoSrc)
     );
     RegsIfId reg2(
-        .clk(clk), .rst(rst),
+        .clk(clock), .rst(rst),
         .freeze(hazard | ramFreeze), .flush(branchTaken),
         .pcIn(pcOutIf), .instructionIn(instOutIf),
         .pcOut(pcOutIfId), .instructionOut(instOutIfId)
     );
     StageEx stEx(
-        .clk(clk), .rst(rst),
+        .clk(clock), .rst(rst),
         .wbEnIn(wbEnOutIdEx), .memREnIn(memReadOutIdEx), .memWEnIn(memWriteOutIdEx),
         .branchTakenIn(branchOutIdEx), .ldStatus(sOutIdEx), .imm(immOutIdEx), .carryIn(carryOut),
         .exeCmd(aluCmdOutIdEx), .val1(reg1OutIdEx), .valRm(reg2OutIdEx), .pc(pcOutIdEx),
@@ -98,13 +91,13 @@ module TopModule(input clock, rst);
         .exeDest(destOutEx), .status(status)
     );
     RegsIfId reg3(
-        .clk(clk), .rst(rst),
+        .clk(clock), .rst(rst),
         .freeze(hazard | ramFreeze), .flush(branchTaken),
         .pcIn(pcOutIf), .instructionIn(instOutIf),
         .pcOut(pcOutIfId), .instructionOut(instOutIfId)
     );
     StageMem stMem(
-        .clk(clk), .rst(rst),
+        .clk(clock), .rst(rst),
         .wbEnIn(wbEnOutExMem), .memREnIn(memReadOutExMem), .memWEnIn(memWriteOutExMem),
         .aluResIn(aluResOutExMem), .valRm(reg2OutExMem), .destIn(destOutExMem),
         .wbEnOut(wbEnOutMem), .memREnOut(memReadOutMem),
@@ -119,13 +112,13 @@ module TopModule(input clock, rst);
         .SRAM_OE_N(SRAM_DE_N)
     );
     RegsIfId reg4(
-        .clk(clk), .rst(rst),
+        .clk(clock), .rst(rst),
         .freeze(hazard | ramFreeze), .flush(branchTaken),
         .pcIn(pcOutIf), .instructionIn(instOutIf),
         .pcOut(pcOutIfId), .instructionOut(instOutIfId)
     );
     StageWrite stWb(
-        .clk(clk), .rst(rst),
+        .clk(clock), .rst(rst),
         .wbEnIn(wbEnOutMemWb), .memREn(memReadOutMemWb),
         .aluRes(aluResOutMemWb), .memData(memDataOutMemWb), .destIn(destOutMemWb),
         .wbEnOut(wbEn), .wbValue(wbValue), .destOut(wbDest)

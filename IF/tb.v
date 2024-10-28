@@ -1,4 +1,3 @@
-`include "top_module.v"
 `timescale 1ns/1ns
 
 module TopLevelTB();
@@ -9,10 +8,7 @@ module TopLevelTB();
     always #HCLK clk = ~clk;
 
     initial begin
-        
-        $dumpfile("if.vcd");
-        $dumpvars(0,TopLevelTB);
-
+        freeze = 0;
         {clk, rst} = 3'b01;
         #10 rst = 1'b0;
         #30000 $stop;

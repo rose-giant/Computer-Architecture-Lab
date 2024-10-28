@@ -1,5 +1,3 @@
-`include "register.v"
-
 module RegsIfId(
     input clk, rst,
     input freeze, flush,
