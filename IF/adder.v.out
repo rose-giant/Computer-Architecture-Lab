@@ -1,0 +1,26 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x55da40510d90 .scope module, "Adder" "Adder" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 32 "a";
+    .port_info 1 /INPUT 32 "b";
+    .port_info 2 /OUTPUT 32 "out";
+P_0x55da40510f20 .param/l "N" 0 2 1, +C4<00000000000000000000000000100000>;
+o0x7f8037bd3018 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x55da40512ba0_0 .net "a", 31 0, o0x7f8037bd3018;  0 drivers
+o0x7f8037bd3048 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x55da40557af0_0 .net "b", 31 0, o0x7f8037bd3048;  0 drivers
+v0x55da40557bd0_0 .net "out", 31 0, L_0x55da40557d40;  1 drivers
+L_0x55da40557d40 .arith/sum 32, o0x7f8037bd3018, o0x7f8037bd3048;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "adder.v";
